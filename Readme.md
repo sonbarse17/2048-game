@@ -69,7 +69,15 @@ Phase 2: Configuring Jenkins Server
    - Kind : Snyk API Token
    - Token : <Your-Snyk-token>
    - ID : snyk-api-token
-9.
+
+
+Phase 3 : Creating a Jenkins CI Pipeline
+
+1. Navigate to New Item
+2. Creae a new item
+   - Name : Jenkins CI
+   - Item Type : Pipeline
+3.
 
 
 
