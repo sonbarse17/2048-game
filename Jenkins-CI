@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = 'sonbarse17/2048-game:latest'
+    }
+
+    stages {
+        stage('Git Clone') {
+            steps {
+               git branch: 'main', url: 'https://github.com/sonbarse17/2048-game.git'
+            }
+        }
+
+        stage('Snyk Code Test') {
+            steps {
+                sh '''
+                    snyk code test --json > snyk-code-output.json || true
+                '''
+            }
+        }
+
+        stage('Snyk Open Source Dependency Test') {
+            steps {
+                sh '''
+                    snyk test --json > snyk-deps-output.json || true
+                '''
+            }
+        }
+
+        stage('Snyk Monitor Open Source') {
+            steps {
+                sh 'snyk monitor > snyk-monitor-output.txt || true'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t ${DOCKER_IMAGE} .'
+            }
+        }
+
+        stage('Snyk Container Test') {
+            steps {
+                sh 'snyk container test ${DOCKER_IMAGE} --json > snyk-container-output.json || true'
+            }
+        }
+
+        stage('Snyk Container Monitor') {
+            steps {
+                sh 'snyk container monitor ${DOCKER_IMAGE} > snyk-container-monitor.txt || true'
+            }
+        }
+
+    }
+
+}
