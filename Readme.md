@@ -29,6 +29,24 @@ Phase 1 : Creating a Jenkins Server
 
 
 Phase 2: Configuring Jenkins Server
+1. Navigate to Manage Jenkins > Plugins > Available plugins
+2. Install Snyk Security Plugin
+3. Navigate to Manage Jenkins > Tools
+4. Snyk Installations
+   Name : snyk
+   Install automaticy from Installer Latest version
+5. Apply and save Configuration
+6. Get Your Snyk API Token from your snyk account
+   - Navigate to your snyk account
+   - Go to your account setting
+   - Account > General > Auth Token
+   - Copy Your API Token
+7. Navigate to Manage Jenkins > Credentials
+8. Create a Global credential
+   - Kind : Snyk API Token
+   - Token : <Your-Snyk-token>
+   - ID : snyk-api-token
+9.
 
 
 
