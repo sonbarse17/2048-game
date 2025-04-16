@@ -81,7 +81,8 @@ Phase 3 : Creating a Jenkins CI Pipeline
 2. Creae a new item
    - Name : Jenkins CI
    - Item Type : Pipeline
-3.
+3. Add Copy Jenkins File from Code and paste it
+
 
 
 
