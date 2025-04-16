@@ -82,6 +82,11 @@ Phase 3 : Creating a Jenkins CI Pipeline
    - Name : Jenkins CI
    - Item Type : Pipeline
 3. Add Copy Jenkins File from Code and paste it
+4. Save and Build
+
+Phase 4 : Verifying Your Build App
+1. Navigate to your browser
+2. Paster Your <Your-public-ip>:8000
 
 
 
