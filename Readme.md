@@ -1,3 +1,7 @@
+Prerequisits :
+1.AWS Account
+2. Snyk Accout 
+
 Phase 1 : Creating a Jenkins Server
 1. Navigate to AWS Conose > EC2 
 2. Create a Instance 
