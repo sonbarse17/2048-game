@@ -55,6 +55,14 @@ pipeline {
                 sh 'snyk container monitor ${DOCKER_IMAGE} > snyk-container-monitor.txt || true'
             }
         }
+        stage('Run Docker Container') {
+            steps {
+                sh '''
+                    docker rm -f 2048-game-container || true
+                    docker run -d --name 2048-game-container -p 8000:80 ${DOCKER_IMAGE}
+                '''
+            }
+        }
 
         stage('Archive Results') {
             steps {
