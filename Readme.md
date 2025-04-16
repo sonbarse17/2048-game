@@ -70,7 +70,7 @@ Phase 2: Configuring Jenkins Server
    - Copy Your API Token
 7. Navigate to Manage Jenkins > Credentials
 8. Create a Global credential
-   - Kind : Snyk API Token
+   - Kind : secret text
    - Token : <Your-Snyk-token>
    - ID : snyk-api-token
 
