@@ -7,7 +7,8 @@ Phase 1 : Creating a Jenkins Server
   Security Group : Allow Port 80 , 8080 ,
   Storage : 25 GB
 3. SSH into Your Jenkins Instance
-4. Install jenkins On EC2 
+4. Install jenkins and Docker On EC2
+   Jenkins Installation
 ```
     #!/bin/bash
     sudo yum update –y
@@ -22,6 +23,28 @@ Phase 1 : Creating a Jenkins Server
     sudo systemctl start jenkins
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
     # default port : 8080
+```
+  Docker Installation
+```
+    #!/bin/bash
+    
+    # Update the system packages
+    sudo yum update -y
+    
+    # Install Docker
+    sudo yum install -y docker
+    
+    # Start Docker service
+    sudo systemctl start docker
+    sudo systemctl enable docker
+    
+    # Add current user to docker group to run docker without sudo
+    sudo usermod -aG docker $USER
+    sudo usermod -aG docker jenkins
+    newgrp docker
+    
+    # Change Docker socket permissions
+    sudo chmod 777 /var/run/docker.sock
 ```
 5. Copy Jenkins Public Ip and Paste In your browser #<Your-Ip>:8080
 6. paste password from sudo cat /var/lib/jenkins/secrets/initialAdminPassword
