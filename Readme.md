@@ -12,7 +12,7 @@ Phase 1 : Creating a Jenkins Server
   Security Group : Allow Port 80 , 8080 ,
   Storage : 25 GB
 3. SSH into Your Jenkins Instance
-4. Install jenkins and Docker On EC2
+4. Install jenkins , Docker and Snyk On EC2
    Jenkins Installation
 ```
     #!/bin/bash
@@ -50,6 +50,13 @@ Phase 1 : Creating a Jenkins Server
     
     # Change Docker socket permissions
     sudo chmod 777 /var/run/docker.sock
+```
+Snyk Installation
+```
+curl -Lo snyk https://static.snyk.io/cli/latest/snyk-linux
+chmod +x snyk
+sudo mv snyk /usr/local/bin/
+snyk --version
 ```
 5. Copy Jenkins Public Ip and Paste In your browser #<Your-Ip>:8080
 6. paste password from sudo cat /var/lib/jenkins/secrets/initialAdminPassword
