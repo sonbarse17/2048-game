@@ -8,23 +8,27 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-               git branch: 'main', url: 'https://github.com/sonbarse17/2048-game.git'
+                git branch: 'main', url: 'https://github.com/sonbarse17/2048-game.git'
+            }
+        }
+
+        stage('Snyk Authenticate') {
+            steps {
+                withCredentials([string(credentialsId: 'snyk-api-token', variable: 'SNYK_TOKEN')]) {
+                    sh 'snyk auth $SNYK_TOKEN'
+                }
             }
         }
 
         stage('Snyk Code Test') {
             steps {
-                sh '''
-                    snyk code test --json > snyk-code-output.json || true
-                '''
+                sh 'snyk code test --json > snyk-code-output.json || true'
             }
         }
 
         stage('Snyk Open Source Dependency Test') {
             steps {
-                sh '''
-                    snyk test --json > snyk-deps-output.json || true
-                '''
+                sh 'snyk test --json > snyk-deps-output.json || true'
             }
         }
 
@@ -52,6 +56,10 @@ pipeline {
             }
         }
 
+        stage('Archive Results') {
+            steps {
+                archiveArtifacts artifacts: 'snyk-*.{json,txt}', allowEmptyArchive: true
+            }
+        }
     }
-
 }
