@@ -59,14 +59,8 @@ pipeline {
             steps {
                 sh '''
                     docker rm -f 2048-game-container || true
-                    docker run -d --name 2048-game-container -p 8000:8000 ${DOCKER_IMAGE}
+                    docker run -d --name 2048-game-container -p 8000:80 ${DOCKER_IMAGE}
                 '''
-            }
-        }
-
-        stage('Archive Results') {
-            steps {
-                archiveArtifacts artifacts: 'snyk-*.{json,txt}', allowEmptyArchive: true
             }
         }
     }
