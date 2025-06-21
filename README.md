@@ -256,6 +256,9 @@ If you want to modify styles:
 - **Game over detection**: Automatic win/lose conditions
 - **Continue playing**: Option to keep playing after reaching 2048
 
+## Game Demo
+- Check the game demo https://sonbarse17.github.io/2048-game/
+
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
